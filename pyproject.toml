@@ -1,0 +1,143 @@
+[project]
+name = "revbits"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "cashmere53", email = "15913755+cashmere53@users.noreply.github.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "loguru>=0.7.3",
+]
+
+[project.scripts]
+revbits = "revbits.__main__:main"
+
+[tool.maturin]
+module-name = "revbits._core"
+python-packages = ["revbits"]
+python-source = "src"
+
+[tool.uv]
+cache-keys = [{ file = "pyproject.toml" }, { file = "src/**/*.rs" }, { file = "Cargo.toml" }, { file = "Cargo.lock" }]
+
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+    "mypy>=1.18.2",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+    "pytest-sugar>=1.1.1",
+    "ruff>=0.14.3",
+    "tox>=4.32.0",
+    "tox-uv>=1.29.0",
+    "ty>=0.0.1a25",
+]
+
+[tool.black]
+target-version = ["py312", "py313"]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "T201",      # print found
+    "D203",      # one-blank-line-before-class
+    "D212",      # multi-line-summary-first-line
+    "ERA001",    # commented-out-code
+    "D1",        # undocumented code
+    "ANN",       # type annotations
+    "COM812",    # trailing comma
+    "ISC001",    # single-line-implicit-string-concatenation
+    "EM102",     # f-string in exception
+    "TRY003",    # long exception message
+    "PLR2004",   # magic value comparison
+    "C901",      # complex function
+    "D301",      # raw docstring
+]
+unfixable = ["F401", "F841"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.mypy]
+python_version = "3.12"
+# plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
+strict = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# filterwarnings = ["ignore::DeprecationWarning",]
+
+[tool.coverage.xml]
+output = ".pytest_cache/coverage.xml"
+
+[tool.coverage.run]
+branch = true
+source = ["revbits", "tests"]
+omit = ["tests/fixtures/*"]
+data_file = ".pytest_cache/.coverage"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "def __str__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "if typing.TYPE_CHECKING:",
+]
+
+[tool.tox]
+env_list = ["py312", "py313", "py314", "format", "type"]
+
+[tool.tox.env_run_base]
+deps = [
+    ".",
+    "pytest",
+    "pytest-sugar",
+]
+commands = [["pytest", "."]]
+
+[tool.tox.env.py312]
+base_python = ["python3.12"]
+
+[tool.tox.env.py313]
+base_python = ["python3.13"]
+
+[tool.tox.env.py314]
+base_python = ["python3.14"]
+
+[tool.tox.env.format]
+deps = [
+    ".",
+    "black",
+]
+commands = [["black", "--check", "."]]
+
+[tool.tox.env.type]
+deps = [
+    ".",
+    "mypy",
+    "ruff",
+    "ty",
+]
+commands = [
+    ["mypy", "src/revbits"],
+    ["ruff", "check", "src/revbits"],
+    ["ty", "check", "src/revbits"],
+]
