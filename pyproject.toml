@@ -1,6 +1,6 @@
 [project]
 name = "revbits"
-version = "0.1.0"
+version = "0.1.1"
 description = "High-performance bit reversal library for Python, implemented in Rust"
 readme = "README.md"
 authors = [
