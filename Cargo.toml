@@ -2,6 +2,12 @@
 name = "revbits"
 version = "0.1.0"
 edition = "2024"
+authors = ["cashmere53 <15913755+cashmere53@users.noreply.github.com>"]
+description = "High-performance bit reversal library for Python, implemented in Rust"
+license = "MIT"
+repository = "https://github.com/cashmere53/ReverseBits"
+keywords = ["bit-reversal", "python", "pyo3"]
+categories = ["algorithms", "api-bindings"]
 
 [lib]
 name = "_core"

@@ -1,3 +1,10 @@
+"""Python wrapper for Rust-implemented bit reversal functions.
+
+This module provides high-level Python functions that wrap the low-level
+Rust implementations, adding automatic type detection, validation, and
+convenient byte order handling.
+"""
+
 from typing import Literal
 
 from revbits._core import (
@@ -78,24 +85,18 @@ def reverse_bytes(value: bytes, bit_width: BitWidth | None = None) -> bytes:
     if bit_width == 16 or (bit_width is None and value_len == 2):
         # 16-bit: word
         int_value = int.from_bytes(value, byteorder="little")
-        if int_value > 0xFFFF:
-            raise ValueError(f"Value {int_value} is out of range for word (0-65535)")
         result = inverse_word(int_value)
         return result.to_bytes(2, byteorder="little")
 
     if bit_width == 32 or (bit_width is None and value_len == 4):
         # 32-bit: dword
         int_value = int.from_bytes(value, byteorder="little")
-        if int_value > 0xFFFFFFFF:
-            raise ValueError(f"Value {int_value} is out of range for dword (0-4294967295)")
         result = inverse_dword(int_value)
         return result.to_bytes(4, byteorder="little")
 
     if bit_width == 64 or (bit_width is None and value_len == 8):
         # 64-bit: qword
         int_value = int.from_bytes(value, byteorder="little")
-        if int_value > 0xFFFFFFFFFFFFFFFF:
-            raise ValueError(f"Value {int_value} is out of range for qword")
         result = inverse_qword(int_value)
         return result.to_bytes(8, byteorder="little")
 

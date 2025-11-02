@@ -12,6 +12,7 @@ wheels/
 
 # Rust build artifacts
 target/
+Cargo.lock
 
 # Compiled extensions
 *.pyd
@@ -19,4 +20,20 @@ target/
 *.dll
 *.dylib
 
+# Test and coverage
+.pytest_cache/
+.coverage
 htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

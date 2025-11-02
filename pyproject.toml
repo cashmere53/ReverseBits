@@ -1,12 +1,24 @@
 [project]
 name = "revbits"
 version = "0.1.0"
-description = "Add your description here"
+description = "High-performance bit reversal library for Python, implemented in Rust"
 readme = "README.md"
 authors = [
     { name = "cashmere53", email = "15913755+cashmere53@users.noreply.github.com" }
 ]
 requires-python = ">=3.12"
+keywords = ["bit-reversal", "rust", "performance", "binary", "bitwise"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Rust",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+]
 dependencies = [
     "loguru>=0.7.3",
 ]
