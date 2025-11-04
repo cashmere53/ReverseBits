@@ -1,6 +1,6 @@
 [package]
 name = "revbits"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2024"
 authors = ["cashmere53 <15913755+cashmere53@users.noreply.github.com>"]
 description = "High-performance bit reversal library for Python, implemented in Rust"
