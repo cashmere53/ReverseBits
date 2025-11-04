@@ -1,3 +1,6 @@
+capsys
+cdylib
+dylib
 filterwarnings
 loguru
 maturin
@@ -5,10 +8,12 @@ mypy
 norecursedirs
 pydantic
 pydocstyle
+pyfunction
+pymodule
 pyproject
 pytest
 repr
 revbits
+Rustdoc
 testpaths
 venv
-capsys
