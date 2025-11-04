@@ -1,5 +1,6 @@
 import sys
-from argparse import ArgumentParser, Namespace
+from argparse import ArgumentParser
+from dataclasses import dataclass
 from pathlib import Path
 
 from loguru import logger
@@ -8,7 +9,15 @@ from revbits import __version__
 from revbits.reverser import reverse_bytes
 
 
-def parse_args() -> Namespace:
+@dataclass
+class CliArgs:
+    file: Path = Path()
+    output: Path | None = None
+    in_place: bool = False
+    verbose: bool = False
+
+
+def parse_args() -> CliArgs:
     parser = ArgumentParser(description="Reverse Bits CLI")
     parser.add_argument("file", type=Path, help="The number to reverse bits")
 
@@ -24,7 +33,10 @@ def parse_args() -> Namespace:
         version=f"%(prog)s {__version__}",
         help="Show the version number and exit",
     )
-    return parser.parse_args()
+
+    ret_val = CliArgs()
+    parser.parse_args(namespace=ret_val)
+    return ret_val
 
 
 def main() -> None:
@@ -39,7 +51,7 @@ def main() -> None:
     logger.debug(f"Parsed arguments: {args}")
     logger.info(f"Input file: {args.file}")
 
-    input_file = Path(args.file)
+    input_file = args.file
     if not input_file.exists():
         logger.error(f"Input file {input_file} does not exist.")
         sys.exit(1)
