@@ -227,7 +227,7 @@ class TestReverseBytesRealWorldPatterns:
 
 
 @pytest.mark.parametrize(
-    "input_val,expected",
+    ("input_val", "expected"),
     [
         (0b00000001, 0b10000000),
         (0b00000010, 0b01000000),
@@ -245,7 +245,7 @@ def test_reverse_byte_parametrized(input_val: int, expected: int) -> None:
 
 
 @pytest.mark.parametrize(
-    "input_bytes,expected_bytes",
+    ("input_bytes", "expected_bytes"),
     [
         (b"\x00", b"\x00"),
         (b"\x01", b"\x80"),
