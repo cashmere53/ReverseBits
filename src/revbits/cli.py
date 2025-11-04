@@ -19,7 +19,7 @@ class CliArgs:
 
 def parse_args() -> CliArgs:
     parser = ArgumentParser(description="Reverse Bits CLI")
-    parser.add_argument("file", type=Path, help="The number to reverse bits")
+    parser.add_argument("file", type=Path, help="Input file path to reverse bits")
 
     # Create mutually exclusive group for output options
     output_group = parser.add_mutually_exclusive_group()

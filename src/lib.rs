@@ -22,12 +22,31 @@ const BIT_REVERSE_TABLE: [u8; 256] = {
     table
 };
 
+/// Reverse the bits of an 8-bit unsigned integer.
+///
+/// # Arguments
+/// * `value` - An unsigned 8-bit integer (0-255)
+///
+/// # Returns
+/// The bit-reversed value as an 8-bit integer
+///
+/// # Example
+/// ```
+/// assert_eq!(inverse_byte(0b00000001), 0b10000000);
+/// ```
 #[pyfunction]
 #[inline]
 fn inverse_byte(value: u8) -> u8 {
     BIT_REVERSE_TABLE[value as usize]
 }
 
+/// Reverse the bits of a 16-bit unsigned integer.
+///
+/// # Arguments
+/// * `value` - An unsigned 16-bit integer (0-65535)
+///
+/// # Returns
+/// The bit-reversed value as a 16-bit integer
 #[pyfunction]
 #[inline]
 fn inverse_word(value: u16) -> u16 {
@@ -36,6 +55,13 @@ fn inverse_word(value: u16) -> u16 {
     (low << 8) | high
 }
 
+/// Reverse the bits of a 32-bit unsigned integer.
+///
+/// # Arguments
+/// * `value` - An unsigned 32-bit integer (0-4294967295)
+///
+/// # Returns
+/// The bit-reversed value as a 32-bit integer
 #[pyfunction]
 #[inline]
 fn inverse_dword(value: u32) -> u32 {
@@ -46,6 +72,13 @@ fn inverse_dword(value: u32) -> u32 {
     (b0 << 24) | (b1 << 16) | (b2 << 8) | b3
 }
 
+/// Reverse the bits of a 64-bit unsigned integer.
+///
+/// # Arguments
+/// * `value` - An unsigned 64-bit integer (0-18446744073709551615)
+///
+/// # Returns
+/// The bit-reversed value as a 64-bit integer
 #[pyfunction]
 #[inline]
 fn inverse_qword(value: u64) -> u64 {
@@ -60,6 +93,13 @@ fn inverse_qword(value: u64) -> u64 {
     (b0 << 56) | (b1 << 48) | (b2 << 40) | (b3 << 32) | (b4 << 24) | (b5 << 16) | (b6 << 8) | b7
 }
 
+/// Reverse the bits of each byte in a bytes object.
+///
+/// # Arguments
+/// * `value` - A bytes slice
+///
+/// # Returns
+/// A new PyBytes object with each byte's bits reversed individually
 #[pyfunction]
 fn inverse_bytes<'py>(py: Python<'py>, value: &[u8]) -> Bound<'py, PyBytes> {
     let result: Vec<u8> = value.iter().map(|&b| BIT_REVERSE_TABLE[b as usize]).collect();
