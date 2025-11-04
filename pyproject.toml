@@ -139,7 +139,7 @@ deps = [
     ".",
     "black",
 ]
-commands = [["black", "--check", "."]]
+commands = [["black", "--check", "./src/revbits", "./tests"]]
 
 [tool.tox.env.type]
 deps = [
