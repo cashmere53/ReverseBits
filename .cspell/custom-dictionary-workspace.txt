@@ -2,6 +2,7 @@ filterwarnings
 loguru
 maturin
 mypy
+norecursedirs
 pydantic
 pydocstyle
 pyproject
@@ -9,4 +10,4 @@ pytest
 repr
 revbits
 testpaths
-revbits
+venv
