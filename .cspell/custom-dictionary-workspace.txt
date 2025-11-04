@@ -1,0 +1,12 @@
+filterwarnings
+loguru
+maturin
+mypy
+pydantic
+pydocstyle
+pyproject
+pytest
+repr
+revbits
+testpaths
+revbits
