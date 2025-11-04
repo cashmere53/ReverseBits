@@ -189,7 +189,8 @@ ReverseBits/
 ├── tests/
 │   ├── __init__.py
 │   ├── test_reverse.py     # reverser.pyのテストスイート
-│   └── test_cli.py         # CLIのテストスイート
+│   ├── test_cli.py         # CLIのテストスイート
+│   └── test_version.py     # バージョン一貫性テスト
 ├── Cargo.toml              # Rust依存関係（PyO3 0.27.1、edition 2024）
 ├── pyproject.toml          # Pythonプロジェクト設定（maturin、uv）
 ├── LICENSE                 # MITライセンス
@@ -264,6 +265,36 @@ Pythonラッパーは以下を提供します：
 - Pythonにおける高性能ビット操作の必要性から着想
 
 ## 変更履歴
+
+### バージョン 0.1.2（2025-11-04）
+
+**品質改善とドキュメント強化**
+
+**修正**:
+- Cargo.tomlのバージョンを0.1.2に更新（pyproject.tomlと統一）
+- CLIの引数説明を修正（"The number to reverse bits" → "Input file path to reverse bits"）
+- __main__.pyにモジュールdocstringを追加
+
+**機能追加**:
+- バージョン一貫性を検証するテストを追加（test_version.py）
+- Rustコードに包括的なドキュメントコメント（///）を追加
+- pytest設定を改善（Python/ディレクトリを除外）
+
+**コード品質**:
+- pytest.mark.parametrizeの引数をタプル形式に修正
+- 型アノテーションの改善（mypy、ruff、ty対応）
+- すべてのリンターとテストを通過（59テスト成功）
+
+**テスト環境**:
+- toxの設定を最適化（利用可能なPython環境のみ実行）
+
+### バージョン 0.1.1（2025-11-02）
+
+**初回リリース後の修正**
+
+**修正**:
+- PyO3 0.27.1への対応
+- ビルドエラーの修正
 
 ### バージョン 0.1.0（2025-11-02）
 
