@@ -11,3 +11,4 @@ repr
 revbits
 testpaths
 venv
+capsys
