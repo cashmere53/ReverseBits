@@ -9,6 +9,7 @@ wheels/
 # Virtual environments
 .venv
 .tox
+Python/
 
 # Rust build artifacts
 target/
@@ -28,7 +29,6 @@ htmlcov/
 .ruff_cache/
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo
